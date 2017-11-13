@@ -1,0 +1,9 @@
+# Messages
+
+computers.list.title={0,choice,0#Не найдено заказов|1#Один заказ найден|1<{0,number,integer} заказа найдено|4<{0,number,integer} заказов найдено}
+
+login.title=Вход в ПУЗ Gletscher
+login.username=имя
+login.password=пароль
+login.remember=запомнить
+login.error.message=Не верное имя или пароль
