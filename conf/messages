@@ -6,4 +6,4 @@ login.title=Вход в ПУЗ Gletscher
 login.username=имя
 login.password=пароль
 login.remember=запомнить
-login.error.message=Не верное имя или пароль
+login.error.message=Неверное имя или пароль
