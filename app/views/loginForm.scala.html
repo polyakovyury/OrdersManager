@@ -1,4 +1,4 @@
-@(form: Form[AuthenticationController.Login])
+@(form: Form[formclasses.Login])
 
 <!DOCTYPE html>
 <html>
@@ -32,7 +32,17 @@
 			@helper.CSRF.formField
 			
 			@if(form.hasGlobalErrors) {
-			<div class="login-form-main-message show error">@Messages("login.error.message")</div>
+			<div class="login-form-main-message show error">
+				@for(error <- form.globalErrors) {
+					@error.format(messages())<br>
+				}
+			</div>
+			}
+
+			@if(flash.contains("success")) {
+				<div class="login-form-main-message show success">
+					@Messages(flash.get("success"))
+				</div>
 			}
 			 
 			<div class="main-login-form">

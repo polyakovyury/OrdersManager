@@ -7,6 +7,7 @@ GET     /                           controllers.HomeController.index()
 
 GET     /login                      controllers.AuthenticationController.login()
 POST    /login                      controllers.AuthenticationController.authenticate()
+GET     /logout                     controllers.AuthenticationController.logout()
 
 # Computers list (look at the default values for pagination parameters)
 GET     /computers                  controllers.HomeController.list(p:Int ?= 0, s ?= "name", o ?= "asc", f ?= "")

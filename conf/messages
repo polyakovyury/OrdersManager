@@ -7,3 +7,4 @@ login.username=имя
 login.password=пароль
 login.remember=запомнить
 login.error.message=Неверное имя или пароль
+logout.message=Вы вышли из системы
