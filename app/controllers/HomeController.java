@@ -7,6 +7,7 @@ import play.libs.concurrent.HttpExecutionContext;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Results;
+import play.mvc.Security;
 import repository.CompanyRepository;
 import repository.ComputerRepository;
 
@@ -46,6 +47,7 @@ public class HomeController extends Controller {
     /**
      * Handle default path requests, redirect to computers list
      */
+    @Security.Authenticated(Secured.class)
     public Result index() {
         return GO_HOME;
     }
@@ -58,6 +60,7 @@ public class HomeController extends Controller {
      * @param order  Sort order (either asc or desc)
      * @param filter Filter applied on computer names
      */
+    @Security.Authenticated(Secured.class)
     public CompletionStage<Result> list(int page, String sortBy, String order, String filter) {
         // Run a db operation in another thread (using DatabaseExecutionContext)
         return computerRepository.page(page, 10, sortBy, order, filter).thenApplyAsync(list -> {
@@ -71,6 +74,7 @@ public class HomeController extends Controller {
      *
      * @param id Id of the computer to edit
      */
+    @Security.Authenticated(Secured.class)
     public CompletionStage<Result> edit(Long id) {
 
         // Run a db operation in another thread (using DatabaseExecutionContext)
@@ -90,6 +94,7 @@ public class HomeController extends Controller {
      *
      * @param id Id of the computer to edit
      */
+    @Security.Authenticated(Secured.class)
     public CompletionStage<Result> update(Long id) throws PersistenceException {
         Form<Computer> computerForm = formFactory.form(Computer.class).bindFromRequest();
         if (computerForm.hasErrors()) {
@@ -112,6 +117,7 @@ public class HomeController extends Controller {
     /**
      * Display the 'new computer form'.
      */
+    @Security.Authenticated(Secured.class)
     public CompletionStage<Result> create() {
         Form<Computer> computerForm = formFactory.form(Computer.class);
         // Run companies db operation and then render the form
@@ -124,6 +130,7 @@ public class HomeController extends Controller {
     /**
      * Handle the 'new computer form' submission
      */
+    @Security.Authenticated(Secured.class)
     public CompletionStage<Result> save() {
         Form<Computer> computerForm = formFactory.form(Computer.class).bindFromRequest();
         if (computerForm.hasErrors()) {
@@ -146,6 +153,7 @@ public class HomeController extends Controller {
     /**
      * Handle computer deletion
      */
+    @Security.Authenticated(Secured.class)
     public CompletionStage<Result> delete(Long id) {
         // Run delete db operation, then redirect
         return computerRepository.delete(id).thenApplyAsync(v -> {
