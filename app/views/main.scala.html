@@ -4,26 +4,46 @@
 <html>
     <head>
         <title>Управление заказами &ndash; "Gletscher"</title>
-        @*************************************
-        <link rel='stylesheet' href='@routes.Assets.at("lib/bootstrap/css/bootstrap.min.css")'>
-        <link rel='stylesheet' href='@routes.Assets.at("lib/font-awesome/css/font-awesome.min.css")'>
-        
-        <script src="@routes.Assets.at("lib/jquery/jquery.js")" type="text/javascript"></script>
-        <script src="@routes.Assets.at("lib/bootstrap/js/bootstrap.min.js")" type="text/javascript"></script>
-        *************************************@
-        <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
         
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")"/> 
     </head>
     <body>
-        
-        <header class="topbar">
-            <h1 class="fill">
-                <a href="@routes.HomeController.index()">
-                    Платформа управления заказами компании "Gletscher"
-                </a>
-            </h1>
-        </header>
+        <nav class="navbar navbar-inverse bg-faded">
+            <a class="navbar-brand" href="@routes.HomeController.index()">
+                <!-- <img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt=""> -->
+                Gletscher
+            </a>
+            <!-- <div class="form-inline text-dark"> -->
+                <ul class="nav">
+                    <li class="nav-item active">
+                        <a class="nav-link text-dark" href="@routes.HomeController.index()">@Messages("nav.home") <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @Messages("nav.db")
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item text-dark" href="@routes.HomeController.manageSections()">@Messages("nav.db.sections")</a>
+                            <a class="dropdown-item text-dark" href="#">@Messages("nav.db.categories")</a>
+                            <a class="dropdown-item text-dark" href="#">@Messages("nav.db.items")</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link text-dark" href="#">@Messages("nav.settings")</a>
+                    </li>
+                </ul>
+            <!-- </div> -->
+
+            <form class="form-inline" action="@routes.AuthenticationController.logout()">
+                <label class="col-form-label text-secondary">Yury Polyakov&nbsp;</label>
+                <button class="btn btn-sm align-middle btn-outline-secondary" id="logout" type="submit">@Messages("logout.button.text")</button>
+            </form>
+        </nav>
         
         <section id="main">
             @content

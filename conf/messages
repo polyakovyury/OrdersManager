@@ -2,9 +2,29 @@
 
 computers.list.title={0,choice,0#Не найдено заказов|1#Один заказ найден|1<{0,number,integer} заказа найдено|4<{0,number,integer} заказов найдено}
 
+#Authorization
+
 login.title=Вход в ПУЗ Gletscher
 login.username=имя
 login.password=пароль
 login.remember=запомнить
 login.error.message=Неверное имя или пароль
 logout.message=Вы вышли из системы
+logout.button.text=Выйти
+
+# Navigation
+
+nav.home=Главная
+nav.settings=Настройки
+nav.db=Базы данных
+nav.db.sections=Направления
+nav.db.categories=Категории
+nav.db.items=Товары
+
+# sections
+
+sections.add.label=Добавить секцию
+sections.add.name=Название секции
+sections.add.name.help=Введите название секции, например "Горнолыжный спорт"
+sections.add.button=Добавить
+sections.list.label=Существующие секции:

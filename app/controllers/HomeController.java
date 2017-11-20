@@ -1,6 +1,8 @@
 package controllers;
 
 import models.Computer;
+import models.Section;
+
 import play.data.Form;
 import play.data.FormFactory;
 import play.libs.concurrent.HttpExecutionContext;
@@ -163,5 +165,14 @@ public class HomeController extends Controller {
         }, httpExecutionContext.current());
     }
 
+
+    /**
+     * List sections and add section form
+     */
+    @Security.Authenticated(Secured.class)
+    public Result manageSections() {
+        Form<Section> sectionForm = formFactory.form(Section.class);
+        return ok(views.html.sectionForm.render(sectionForm));
+    }
 }
             
