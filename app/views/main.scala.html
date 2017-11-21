@@ -13,12 +13,14 @@
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")"/> 
     </head>
     <body>
+            <div class="container">
+
         <nav class="navbar navbar-inverse bg-faded">
             <a class="navbar-brand" href="@routes.HomeController.index()">
                 <!-- <img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt=""> -->
                 Gletscher
             </a>
-            <!-- <div class="form-inline text-dark"> -->
+            
                 <ul class="nav">
                     <li class="nav-item active">
                         <a class="nav-link text-dark" href="@routes.HomeController.index()">@Messages("nav.home") <span class="sr-only">(current)</span></a>
@@ -28,7 +30,7 @@
                             @Messages("nav.db")
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item text-dark" href="@routes.HomeController.manageSections()">@Messages("nav.db.sections")</a>
+                            <a class="dropdown-item text-dark" href="@routes.HomeController.sections()">@Messages("nav.db.sections")</a>
                             <a class="dropdown-item text-dark" href="#">@Messages("nav.db.categories")</a>
                             <a class="dropdown-item text-dark" href="#">@Messages("nav.db.items")</a>
                         </div>
@@ -37,7 +39,6 @@
                             <a class="nav-link text-dark" href="#">@Messages("nav.settings")</a>
                     </li>
                 </ul>
-            <!-- </div> -->
 
             <form class="form-inline" action="@routes.AuthenticationController.logout()">
                 <label class="col-form-label text-secondary">Yury Polyakov&nbsp;</label>
@@ -45,9 +46,21 @@
             </form>
         </nav>
         
-        <section id="main">
+
+        
+        <nav class="breadcrumb">
+        <a class="breadcrumb-item" href="#">Home</a>
+        <a class="breadcrumb-item" href="#">Library</a>
+        <a class="breadcrumb-item" href="#">Data</a>
+        <span class="breadcrumb-item active">Bootstrap</span>
+        </nav>
+        
+        
+        
             @content
-        </section>
+        
+
+        </div>
         
     </body>
 </html>

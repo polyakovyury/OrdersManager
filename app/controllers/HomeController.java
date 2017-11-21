@@ -12,6 +12,7 @@ import play.mvc.Results;
 import play.mvc.Security;
 import repository.CompanyRepository;
 import repository.ComputerRepository;
+import repository.SectionRepository;
 
 import javax.inject.Inject;
 import javax.persistence.PersistenceException;
@@ -25,6 +26,7 @@ public class HomeController extends Controller {
 
     private final ComputerRepository computerRepository;
     private final CompanyRepository companyRepository;
+    private final SectionRepository sectionRepository;
     private final FormFactory formFactory;
     private final HttpExecutionContext httpExecutionContext;
 
@@ -32,10 +34,12 @@ public class HomeController extends Controller {
     public HomeController(FormFactory formFactory,
                           ComputerRepository computerRepository,
                           CompanyRepository companyRepository,
+                          SectionRepository sectionRepository,
                           HttpExecutionContext httpExecutionContext) {
         this.computerRepository = computerRepository;
         this.formFactory = formFactory;
         this.companyRepository = companyRepository;
+        this.sectionRepository = sectionRepository;
         this.httpExecutionContext = httpExecutionContext;
     }
 
@@ -170,9 +174,32 @@ public class HomeController extends Controller {
      * List sections and add section form
      */
     @Security.Authenticated(Secured.class)
-    public Result manageSections() {
+    public CompletionStage<Result> sections() {
         Form<Section> sectionForm = formFactory.form(Section.class);
-        return ok(views.html.sectionForm.render(sectionForm));
+        return sectionRepository.options().thenApplyAsync(results -> {
+            // This is the HTTP rendering thread context
+            return ok(views.html.sectionForm.render(sectionForm, results));
+        }, httpExecutionContext.current());
+    }
+
+    @Security.Authenticated(Secured.class)
+    public CompletionStage<Result> addSection() {
+        Form<Section> sectionForm = formFactory.form(Section.class).bindFromRequest();
+        if (sectionForm.hasErrors()) {
+            // Run companies db operation and then render the form
+            return sectionRepository.options().thenApplyAsync(results -> {
+                // This is the HTTP rendering thread context
+                return badRequest(views.html.sectionForm.render(sectionForm, results));
+            }, httpExecutionContext.current());
+        }
+
+        Section section = sectionForm.get();
+        // Run insert db operation, then redirect
+        return sectionRepository.insert(section).thenApplyAsync(id -> {
+            // This is the HTTP rendering thread context
+            flash("success", "Section " + section.name + " has been created");
+            return GO_HOME;
+        }, httpExecutionContext.current());
     }
 }
             

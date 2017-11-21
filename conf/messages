@@ -16,15 +16,17 @@ logout.button.text=Выйти
 
 nav.home=Главная
 nav.settings=Настройки
-nav.db=Базы данных
-nav.db.sections=Направления
+nav.db=База данных
+nav.db.sections=Секции
 nav.db.categories=Категории
 nav.db.items=Товары
 
-# sections
+# Sections
 
 sections.add.label=Добавить секцию
 sections.add.name=Название секции
 sections.add.name.help=Введите название секции, например "Горнолыжный спорт"
 sections.add.button=Добавить
-sections.list.label=Существующие секции:
+sections.list.label=Существующие секции
+sections.list.column.id=#
+sections.list.column.name=Название секции

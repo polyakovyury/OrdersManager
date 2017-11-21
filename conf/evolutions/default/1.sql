@@ -2,6 +2,12 @@
 
 # --- !Ups
 
+create table section (
+  id                        bigint not null,
+  name                      varchar(255),
+  constraint pk_section primary key (id))
+;
+
 create table company (
   id                        bigint not null,
   name                      varchar(255),
@@ -17,6 +23,8 @@ create table computer (
   constraint pk_computer primary key (id))
 ;
 
+create sequence section_seq start with 1000;
+
 create sequence company_seq start with 1000;
 
 create sequence computer_seq start with 1000;
@@ -29,11 +37,15 @@ create index ix_computer_company_1 on computer (company_id);
 
 SET REFERENTIAL_INTEGRITY FALSE;
 
+drop table if exists section;
+
 drop table if exists company;
 
 drop table if exists computer;
 
 SET REFERENTIAL_INTEGRITY TRUE;
+
+drop sequence if exists section_seq;
 
 drop sequence if exists company_seq;
 
