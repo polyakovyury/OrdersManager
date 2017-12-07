@@ -5,8 +5,8 @@
 @main {
     
       <div class="card">
-          <div class="card-header bg-light">
-              @Messages("sections.add.label")
+          <div class="card-header bg-light text-success">
+              <strong>@Messages("sections.add.label")</strong>
             </div>
           <div class="card-block">
     <!-- <h4 class="card-title">@Messages("sections.add.label")</h4> -->
@@ -39,7 +39,7 @@
       <div class="card-block"> -->
         <!-- <div class="offset-sm-1 col-sm-10"> -->
           <table class="table table-hover table-sm">
-              <thead class="thead-default bg-light">
+              <thead class="thead-default bg-light text-info">
                 <tr>
                   <th>@Messages("sections.list.column.id")</th>
                   <th>@Messages("sections.list.column.name")</th>
@@ -48,7 +48,7 @@
               <tbody>
                   @for((key, value) <- sections) {
                     <tr>
-                    <th scope="row">@key</th>
+                    <td>@key</td>
                     <td>@value</td>
                     </tr> 
                   }

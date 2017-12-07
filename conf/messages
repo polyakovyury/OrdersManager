@@ -30,3 +30,14 @@ sections.add.button=Добавить
 sections.list.label=Существующие секции
 sections.list.column.id=#
 sections.list.column.name=Название секции
+
+# Categories
+
+categories.add.label=Создать новую категорию товара
+categories.add.name=Название категории
+categories.add.name.help=Введите название категории, например "Горнолыжные комбинезоны"
+categories.add.section=Выберите секцию
+categories.add.section.help=Секция к которой относится данная категория товара...
+categories.add.standartsize=Стандартные размеры
+categories.add.customsize=Пользовательский размер
+categories.add.button=Добавить

@@ -2,6 +2,7 @@ package controllers;
 
 import models.Computer;
 import models.Section;
+import models.Category;
 
 import play.data.Form;
 import play.data.FormFactory;
@@ -199,6 +200,18 @@ public class HomeController extends Controller {
             // This is the HTTP rendering thread context
             flash("success", "Section " + section.name + " has been created");
             return GO_HOME;
+        }, httpExecutionContext.current());
+    }
+
+    /**
+     * List sections and add section form
+     */
+    @Security.Authenticated(Secured.class)
+    public CompletionStage<Result> listCategories() {
+        Form<Category> categoryForm = formFactory.form(Category.class);
+        return sectionRepository.options().thenApplyAsync(results -> {
+            // This is the HTTP rendering thread context
+            return ok(views.html.categoryForm.render(categoryForm, results));
         }, httpExecutionContext.current());
     }
 }
