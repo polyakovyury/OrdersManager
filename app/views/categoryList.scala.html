@@ -16,8 +16,8 @@
         <th>@Messages("categories.list.column.id")</th>
         <th>@Messages("categories.list.column.name")</th>
         <th>@Messages("categories.list.column.section")</th>
-        <th>@Messages("categories.list.column.size.standart")</th>
-        <th>@Messages("categories.list.column.size.custom")</th>
+        <th class="text-center">@Messages("categories.list.column.size.standart")</th>
+        <th class="text-center">@Messages("categories.list.column.size.custom")</th>
       </tr>
     </thead>
     <tbody>
@@ -32,8 +32,20 @@
                 @category.section.name
             }
           </td>
-          <td>@{if(category.hasStandartSize) Messages("checkbox.true") else Messages("checkbox.false")}</td>
-          <td>@{if(category.hasCustomSize) Messages("checkbox.true") else Messages("checkbox.false")}</td>
+          <td class="text-center">
+            @if(category.hasStandartSize) {
+              @Messages("checkbox.true")
+            } else {
+              @Messages("checkbox.false")
+            }
+          </td>
+          <td class="text-center">
+            @if(category.hasCustomSize) {
+              @Messages("checkbox.true")
+            } else {
+              @Messages("checkbox.false")
+            }
+          </td>
           </tr> 
         }
     </tbody>

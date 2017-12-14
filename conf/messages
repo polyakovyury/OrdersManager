@@ -39,10 +39,10 @@ sections.list.column.name=Название секции
 # Categories
 
 categories.list.column.id=#
-categories.list.column.name=Категория
+categories.list.column.name=Название категории
 categories.list.column.section=Секция
-categories.list.column.size.standart=Стандартные размеры
-categories.list.column.size.custom=Размер под заказ
+categories.list.column.size.standart=Станд. размеры
+categories.list.column.size.custom=Заказ. размеры
 categories.new.button=Создать категорию
 categories.add.label=Создать категорию товара
 categories.add.name=Название категории
