@@ -1,0 +1,41 @@
+@(categories: List[Category])
+
+@import helper._
+
+@main {
+    
+  <div class="float-right">
+    <a class="btn btn-outline-success" id="new" href="@routes.HomeController.createCategory()">@Messages("categories.new.button")</a>
+  </div>
+
+  <br>
+
+  <table class="table table-hover table-sm">
+    <thead class="thead-default bg-light text-info">
+        <tr>
+        <th>@Messages("categories.list.column.id")</th>
+        <th>@Messages("categories.list.column.name")</th>
+        <th>@Messages("categories.list.column.section")</th>
+        <th>@Messages("categories.list.column.size.standart")</th>
+        <th>@Messages("categories.list.column.size.custom")</th>
+      </tr>
+    </thead>
+    <tbody>
+        @for(category <- categories) {
+          <tr>
+          <td>@category.id.toString()</td>
+          <td>@category.name</td>
+          <td>
+            @if(category.section == null) {
+                <em>-</em>
+            } else {
+                @category.section.name
+            }
+          </td>
+          <td>@{if(category.hasStandartSize) Messages("checkbox.true") else Messages("checkbox.false")}</td>
+          <td>@{if(category.hasCustomSize) Messages("checkbox.true") else Messages("checkbox.false")}</td>
+          </tr> 
+        }
+    </tbody>
+  </table>
+}

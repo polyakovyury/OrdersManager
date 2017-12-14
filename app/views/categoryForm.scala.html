@@ -10,13 +10,13 @@
         </div>
     <div class="card-block">
     <br>
-    @form(routes.HomeController.addSection()) {
+    @form(routes.HomeController.saveCategory()) {
       @CSRF.formField
 
       <div class="form-group row">
         <label for="selectSection" class="col-sm-3 col-form-label text-right">@Messages("categories.add.section")</label>
         <div class="col-sm-8">
-            <select class="custom-select col-sm-8" name="section" id="selectSection">
+            <select class="custom-select col-sm-8" name="section.id" id="selectSection">
                 <option selected>@Messages("categories.add.section.help")</option>
                 @for((key, value) <- sections) {
                   <option value="@key">@value</option>

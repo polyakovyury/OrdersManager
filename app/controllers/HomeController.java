@@ -14,6 +14,7 @@ import play.mvc.Security;
 import repository.CompanyRepository;
 import repository.ComputerRepository;
 import repository.SectionRepository;
+import repository.CategoryRepository;
 
 import javax.inject.Inject;
 import javax.persistence.PersistenceException;
@@ -28,6 +29,7 @@ public class HomeController extends Controller {
     private final ComputerRepository computerRepository;
     private final CompanyRepository companyRepository;
     private final SectionRepository sectionRepository;
+    private final CategoryRepository categoryRepository;
     private final FormFactory formFactory;
     private final HttpExecutionContext httpExecutionContext;
 
@@ -36,11 +38,13 @@ public class HomeController extends Controller {
                           ComputerRepository computerRepository,
                           CompanyRepository companyRepository,
                           SectionRepository sectionRepository,
+                          CategoryRepository categoryRepository,
                           HttpExecutionContext httpExecutionContext) {
         this.computerRepository = computerRepository;
         this.formFactory = formFactory;
         this.companyRepository = companyRepository;
         this.sectionRepository = sectionRepository;
+        this.categoryRepository = categoryRepository;
         this.httpExecutionContext = httpExecutionContext;
     }
 
@@ -204,14 +208,41 @@ public class HomeController extends Controller {
     }
 
     /**
-     * List sections and add section form
+     * List categories and add category form
      */
     @Security.Authenticated(Secured.class)
     public CompletionStage<Result> listCategories() {
+        return categoryRepository.options().thenApplyAsync(results -> {
+            // This is the HTTP rendering thread context
+            return ok(views.html.categoryList.render(results));
+        }, httpExecutionContext.current());
+    }
+
+    @Security.Authenticated(Secured.class)
+    public CompletionStage<Result> createCategory() {
         Form<Category> categoryForm = formFactory.form(Category.class);
         return sectionRepository.options().thenApplyAsync(results -> {
             // This is the HTTP rendering thread context
             return ok(views.html.categoryForm.render(categoryForm, results));
+        }, httpExecutionContext.current());
+    }
+
+    @Security.Authenticated(Secured.class)
+    public CompletionStage<Result> saveCategory() {
+        Form<Category> form = formFactory.form(Category.class).bindFromRequest();
+        if (form.hasErrors()) {
+            return sectionRepository.options().thenApplyAsync(results -> {
+                // This is the HTTP rendering thread context
+                return badRequest(views.html.categoryForm.render(form, results));
+            }, httpExecutionContext.current());
+        }
+
+        Category category = form.get();
+        // Run insert db operation, then redirect
+        return categoryRepository.insert(category).thenApplyAsync(id -> {
+            // This is the HTTP rendering thread context
+            flash("success", "Category " + category.name + " " + category.section.id + " has been created");
+            return GO_HOME;
         }, httpExecutionContext.current());
     }
 }
