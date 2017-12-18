@@ -5,25 +5,27 @@
 @main {
     
   <div class="float-right">
+    <!-- <a class="btn btn-outline-warning" id="improvements" href="@routes.HomeController.createCategory()">@Messages("categories.improvements.button")</a> -->
     <a class="btn btn-outline-success" id="new" href="@routes.HomeController.createCategory()">@Messages("categories.new.button")</a>
   </div>
 
   <br>
 
   <table class="table table-hover table-sm">
-    <thead class="thead-default bg-light text-info">
+    <thead class="thead-default bg-light text-default">
         <tr>
-        <th>@Messages("categories.list.column.id")</th>
+        <!-- <th>@Messages("categories.list.column.id")</th> -->
         <th>@Messages("categories.list.column.name")</th>
         <th>@Messages("categories.list.column.section")</th>
         <th class="text-center">@Messages("categories.list.column.size.standart")</th>
         <th class="text-center">@Messages("categories.list.column.size.custom")</th>
+        <th class="col-sm-4">@Messages("categories.list.column.improvements")</th>
       </tr>
     </thead>
     <tbody>
         @for(category <- categories) {
           <tr>
-          <td>@category.id.toString()</td>
+          <!-- <td>@category.id.toString()</td> -->
           <td>@category.name</td>
           <td>
             @if(category.section == null) {
@@ -46,6 +48,16 @@
               @Messages("checkbox.false")
             }
           </td>
+          <td>
+              <span class="badge badge-info">Нагрудный карман</span>
+              <span class="badge badge-info">Усиления на локтях</span>
+              <span class="badge badge-info">Усиления на коленях</span>
+              <span class="badge badge-info">Карман для skipass</span>
+              <span class="badge badge-info">Выход под наушники</span>
+              <span class="badge badge-info">Вентиляция паховая</span>
+              <span class="badge badge-info">Вентиляция подмышками</span>
+              <span class="badge badge-info">Бомболюк</span>
+            </td>
           </tr> 
         }
     </tbody>

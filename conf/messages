@@ -25,6 +25,7 @@ nav.db=База данных
 nav.db.sections=Секции
 nav.db.categories=Категории
 nav.db.items=Товары
+nav.db.improvements=Улучшения
 
 # Sections
 
@@ -41,9 +42,11 @@ sections.list.column.name=Название секции
 categories.list.column.id=#
 categories.list.column.name=Название категории
 categories.list.column.section=Секция
+categories.list.column.improvements=Улучшения
 categories.list.column.size.standart=Станд. размеры
 categories.list.column.size.custom=Заказ. размеры
-categories.new.button=Создать категорию
+categories.new.button=Новая категория
+categories.improvements.button=Добавить улучшение
 categories.add.label=Создать категорию товара
 categories.add.name=Название категории
 categories.add.name.help=Введите название категории, например "Горнолыжные комбинезоны"
@@ -52,3 +55,13 @@ categories.add.section.help=Секция к которой относится д
 categories.add.standartsize=Стандартные размеры
 categories.add.customsize=Размер под заказ
 categories.add.button=Добавить
+
+# Sections
+
+improvements.add.label=Добавить улучшение
+improvements.add.name=Название улучшения
+improvements.add.name.help=Введите название улучшения, например "Бомболюк"
+improvements.add.button=Добавить
+improvements.list.label=Список улучшений
+improvements.list.column.id=#
+improvements.list.column.name=Название улучшения

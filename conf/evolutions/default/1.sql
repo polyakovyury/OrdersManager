@@ -17,6 +17,12 @@ create table category (
   constraint pk_category primary key (id))
 ;
 
+create table improvement (
+  id                        bigint not null,
+  name                      varchar(255),
+  constraint improvement primary key (id))
+;
+
 create table company (
   id                        bigint not null,
   name                      varchar(255),
@@ -36,6 +42,8 @@ create sequence section_seq start with 1000;
 
 create sequence category_seq start with 1000;
 
+create sequence improvement_seq start with 1000;
+
 create sequence company_seq start with 1000;
 
 create sequence computer_seq start with 1000;
@@ -52,6 +60,10 @@ SET REFERENTIAL_INTEGRITY FALSE;
 
 drop table if exists section;
 
+drop table if exists improvement;
+
+drop table if exists category;
+
 drop table if exists company;
 
 drop table if exists computer;
@@ -59,6 +71,10 @@ drop table if exists computer;
 SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists section_seq;
+
+drop sequence if exists improvement_seq;
+
+drop sequence if exists category_seq;
 
 drop sequence if exists company_seq;
 

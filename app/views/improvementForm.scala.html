@@ -1,0 +1,50 @@
+@(formImprovement: Form[Improvement], map: Map[String, String])
+
+@import helper._
+
+@main {
+    
+  <div class="card">
+    <div class="card-header bg-light text-success">
+      <strong>@Messages("improvements.add.label")</strong>
+    </div>
+    <div class="card-block">
+      <br>
+      @form(routes.ImprovementController.save()) {
+        @CSRF.formField
+
+        <div class="form-group row">
+          <label for="inputName" class="col-sm-3 col-form-label text-right">@Messages("improvements.add.name")</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" name="name" id="inputName" placeholder="@Messages("improvements.add.name.help")"/>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="offset-sm-3 col-sm-10">
+            <button type="submit" class="btn btn-outline-success">@Messages("improvements.add.button")</button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <br>
+
+  <table class="table table-hover table-sm">
+    <thead class="thead-default bg-light text-info">
+      <tr>
+        <th>@Messages("improvements.list.column.id")</th>
+        <th>@Messages("improvements.list.column.name")</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for((key, value) <- map) {
+        <tr>
+          <td>@key</td>
+          <td>@value</td>
+        </tr> 
+      }
+    </tbody>
+  </table>
+}
